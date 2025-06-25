@@ -32,7 +32,7 @@ This web-based application allows users to manage movie information and perform 
 
 ### Local Deployment with Docker Compose
 
-Use the following `docker-compose.yaml` snippet to run backend and frontend containers locally:
+This setup allows you to run the backend and frontend containers locally using Docker images, without downloading or building the source code from GitHub:
 
 ```yaml
 services:
