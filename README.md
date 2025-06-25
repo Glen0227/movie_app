@@ -1,5 +1,8 @@
 # Movie Information & Sentiment Analysis Web Application
 
+## Streamlit UI
+![Main Page](images/main_page.png)
+
 ## Overview
 
 This web-based application allows users to manage movie information and perform sentiment analysis on user reviews. It supports movie registration, search, update, and deletion features, while leveraging a KoBERT-based sentiment analysis model. The frontend uses Streamlit to provide a user-friendly visual interface.
@@ -99,7 +102,3 @@ Mission18/
 - **Add Movie:** Register new movies
 - **Update Movie:** Edit movie info and perform sentiment analysis on reviews
 - Sentiment scores are shown as probabilities between 0 (negative) and 1 (positive)
-
-# Streamlit UI
-![Main Page](attachment:4b945a3c-e516-4c40-a826-76741d44090f:image.png)
-![image.png](attachment:4b945a3c-e516-4c40-a826-76741d44090f:image.png)
