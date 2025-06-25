@@ -49,6 +49,7 @@ services:
 
 # Project Structure
 
+```plaintext
 Mission18/
 ├── backend/
 │   ├── main.py               # FastAPI server entry point
@@ -69,7 +70,7 @@ Mission18/
 │   ├── pyproject.toml        # Frontend dependencies
 │   └── uv.lock               # Frontend package lock file
 └── docker-compose.yaml       # Docker Compose configuration
-
+```
 # System Architecture
 - Frontend: Streamlit UI for user interaction
 - Backend: FastAPI REST API handling movie CRUD and review analysis
