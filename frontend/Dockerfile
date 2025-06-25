@@ -10,4 +10,4 @@ COPY utils ./utils/
 RUN pip install uv
 RUN uv sync
 
-CMD ["uv", "run", "streamlit", "run", "app.py"]
+CMD ["uv", "run", "streamlit", "run", "app.py", "--", "--mode", "compose"]

@@ -1,6 +1,9 @@
 import streamlit as st
 import os
 from utils.utils import wait_for_backend
+import argparse
+import logging
+logging.basicConfig(level=logging.INFO)
 
 st.set_page_config(
     page_title="Movie Search and Review Analysis",
@@ -8,13 +11,30 @@ st.set_page_config(
     page_icon="🎬"
 )
 
+# ───── argparse setting ─────
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--mode",
+        choices=["gcp", "local", "compose"],
+        default="gcp",
+        help="Set backend mode: gcp (default), local, or compose"
+    )
+    return parser.parse_known_args()[0]  # streamlit이 자체 인자도 쓰기 때문에 parse_known_args
+
+args = get_args()
+logging.info(args.mode)
 # ──────────────────────── Session state Initialize ────────────────────────
 if "movie_list" not in st.session_state:
     st.session_state.movie_list = []
 
 if "base_url" not in st.session_state:
-    default_url = "http://fastapi-backend:8000"
-    st.session_state.base_url = os.getenv("BACKEND_URL", default_url)
+    if args.mode == "local":
+        st.session_state.base_url = "http://localhost:8000"
+    elif args.mode == "compose":
+        st.session_state.base_url = "http://fastapi-backend:8000"
+    else:  # gcp
+        st.session_state.base_url = "http://34.171.229.25:8000"
 
 # ──────────────────────── Backend Health check ────────────────────────
 with st.spinner("⏳ Backend is loading... Please wait."):
