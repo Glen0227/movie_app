@@ -100,4 +100,6 @@ Mission18/
 - **Update Movie:** Edit movie info and perform sentiment analysis on reviews
 - Sentiment scores are shown as probabilities between 0 (negative) and 1 (positive)
 
-
+# Streamlit UI
+![Main Page](attachment:4b945a3c-e516-4c40-a826-76741d44090f:image.png)
+![image.png](attachment:4b945a3c-e516-4c40-a826-76741d44090f:image.png)
