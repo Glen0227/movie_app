@@ -40,13 +40,16 @@ services:
     image: keugmogu/backend:latest
     ports:
       - "8000:8000"
-
+    # volumes:
+      # - ./{path}/{file_name}.db:/app/movies.db
   streamlit-frontend:
     image: keugmogu/frontend:latest
     ports:
       - "8501:8501"
 ```
-
+> ⚠️ To ensure the above Docker Compose setup works properly, follow these steps:
+> 1. Create a SQLite database file named {file_name}.db in the specified {path} directory on your host machine.
+> 2. Uncomment the volumes section and replace {path} and {file_name} with your actual values to mount the local database file into the container at /app/movies.db.
 
 # Project Structure
 
