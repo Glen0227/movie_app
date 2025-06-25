@@ -20,7 +20,8 @@ def get_args():
         default="gcp",
         help="Set backend mode: gcp (default), local, or compose"
     )
-    return parser.parse_known_args()[0]  # streamlit이 자체 인자도 쓰기 때문에 parse_known_args
+    # Streamlit internally uses its own command-line arguments (like --global.developmentMode, --server.port, etc.).
+    return parser.parse_known_args()[0]  
 
 args = get_args()
 logging.info(args.mode)
