@@ -40,8 +40,6 @@ services:
     image: keugmogu/backend:latest
     ports:
       - "8000:8000"
-    volumes:
-      - ./backend/movies.db:/app/movies.db
 
   streamlit-frontend:
     image: keugmogu/frontend:latest
