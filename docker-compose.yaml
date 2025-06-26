@@ -5,9 +5,15 @@ services:
       dockerfile: Dockerfile 
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend/movies.db:/app/movies.db
+      - ./backend/main.py:/app/main.py
   streamlit-frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "8501:8501"
+    volumes:
+      - ./frontend/app.py:/app/app.py
+

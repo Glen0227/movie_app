@@ -188,7 +188,7 @@ async def get_all_movies(session: SessionDep):
     return [reshaping_movie(movie) for movie in movies]
 
 # Search from DB
-@app.get('/movies/title/{movie_title}', response_model=MovieResponse, response_model_exclude=['id'])
+@app.get('/movies/title/{movie_title}', response_model=List[MovieResponse], response_model_exclude=['id'])
 async def get_title(session: SessionDep, movie_title: Annotated[str, Path(description="Input the movie title that you looking for!")]):
     '''
     take `movie_tile` as a input variable and return the correspond infos form DB
@@ -199,13 +199,13 @@ async def get_title(session: SessionDep, movie_title: Annotated[str, Path(descri
         MovieResponse: movie which correspond to the user input (if available).
     '''
     if movie_title:
-        statement = select(MoviesTable).where(MoviesTable.title == movie_title)
-        movie = session.exec(statement).first()
+        statement = select(MoviesTable).where(MoviesTable.title.ilike(f"%{movie_title}%"))
+        movies = session.exec(statement).all()
 
-        if not movie:
+        if not movies:
             raise HTTPException(status_code=404, detail='No movies found')
         
-        return reshaping_movie(movie)
+        return [reshaping_movie(movie) for movie in movies]
 
     raise HTTPException(status_code=404, detail=f"NO MATCHING MOVIE FOUND!: {movie_title}")
     
@@ -221,7 +221,7 @@ async def get_director(session: SessionDep, movie_director: Annotated[str, Path(
         List[MovieResponse]: List of all movies (if available).
     '''
     if movie_director:
-        statement = select(MoviesTable).where(MoviesTable.director == movie_director)
+        statement = select(MoviesTable).where(MoviesTable.director.ilike(f"%{movie_director}%"))
         movies = session.exec(statement).all()
 
         if not movies:
