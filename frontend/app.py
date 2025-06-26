@@ -35,7 +35,7 @@ if "base_url" not in st.session_state:
     elif args.mode == "compose":
         st.session_state.base_url = "http://fastapi-backend:8000"
     else:  # gcp
-        st.session_state.base_url = "http://34.171.229.25:8000"
+        st.session_state.base_url = "http://35.208.11.168:8000"
 
 # ──────────────────────── Backend Health check ────────────────────────
 with st.spinner("⏳ Backend is loading... Please wait."):
