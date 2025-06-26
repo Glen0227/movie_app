@@ -1,5 +1,8 @@
 # Movie Information & Sentiment Analysis Web Application
 
+## Streamlit UI
+![Main Page](images/main_page.png)
+
 ## Overview
 
 This web-based application allows users to manage movie information and perform sentiment analysis on user reviews. It supports movie registration, search, update, and deletion features, while leveraging a KoBERT-based sentiment analysis model. The frontend uses Streamlit to provide a user-friendly visual interface.
@@ -29,7 +32,7 @@ This web-based application allows users to manage movie information and perform 
 
 ### Local Deployment with Docker Compose
 
-Use the following `docker-compose.yaml` snippet to run backend and frontend containers locally:
+This setup allows you to run the backend and frontend containers locally using Docker images, without downloading or building the source code from GitHub:
 
 ```yaml
 services:
@@ -37,15 +40,16 @@ services:
     image: keugmogu/backend:latest
     ports:
       - "8000:8000"
-    volumes:
-      - ./backend/movies.db:/app/movies.db
-
+    # volumes:
+      # - ./{path}/{file_name}.db:/app/movies.db
   streamlit-frontend:
     image: keugmogu/frontend:latest
     ports:
       - "8501:8501"
 ```
-
+> ⚠️ To ensure the above Docker Compose setup works properly, follow these steps:
+> 1. Create a SQLite database file named {file_name}.db in the specified {path} directory on your host machine.
+> 2. Uncomment the volumes section and replace {path} and {file_name} with your actual values to mount the local database file into the container at /app/movies.db.
 
 # Project Structure
 
@@ -99,7 +103,3 @@ Mission18/
 - **Add Movie:** Register new movies
 - **Update Movie:** Edit movie info and perform sentiment analysis on reviews
 - Sentiment scores are shown as probabilities between 0 (negative) and 1 (positive)
-
-# Streamlit UI
-![Main Page](attachment:4b945a3c-e516-4c40-a826-76741d44090f:image.png)
-![image.png](attachment:4b945a3c-e516-4c40-a826-76741d44090f:image.png)
